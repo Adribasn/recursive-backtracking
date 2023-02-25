@@ -6,7 +6,7 @@ Made in Python using PyGame
 ## 10x10 Maze 
 Performance : 3.3s
 
-![Screenshot (37)](https://user-images.githubusercontent.com/68373594/221359237-82ea35f3-8fff-45e2-bdeb-860adaf8cfea.png)
+![Screenshot (38)](https://user-images.githubusercontent.com/68373594/221359367-6a79ff21-e43d-42a3-911e-22b242c173cd.png)
 
 ## 25x25 Maze
 Performance : 20.8s
