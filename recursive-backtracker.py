@@ -65,30 +65,38 @@ while True:
         grid[updatedHead.x][updatedHead.y].visited = True
         stack.append(updatedHead)
 
-
-    
+        if head.x == updatedHead.x - 1 and updatedHead.y == head.y:
+            print('right')
+            pygame.draw.rect(screen, cellColor, ((head.x * cellSize) + ((head.x + 1) * wallWidth) + cellSize, (head.y * cellSize) + ((head.y + 1) * wallWidth), wallWidth, cellSize))
+        elif head.x == updatedHead.x + 1 and updatedHead.y == head.y:
+            print('left')
+            pygame.draw.rect(screen, cellColor, ((head.x * cellSize) + ((head.x + 1) * wallWidth) - wallWidth, (head.y * cellSize) + ((head.y + 1) * wallWidth), wallWidth, cellSize))
+        elif head.x == updatedHead.x and head.y == updatedHead.y - 1:
+            print('bottom')
+            pygame.draw.rect(screen, cellColor, ((head.x * cellSize) + ((head.x + 1) * wallWidth), (head.y * cellSize) + ((head.y + 1) * wallWidth) + cellSize, cellSize, wallWidth))
+        elif head.x == updatedHead.x and head.y == updatedHead.y + 1:
+            print('top')
+            pygame.draw.rect(screen, cellColor, ((head.x * cellSize) + ((head.x + 1) * wallWidth), (head.y * cellSize) + ((head.y + 1) * wallWidth) - wallWidth, cellSize, wallWidth))
     
     for row in range(rows):
         for col in range(cols):
             cell = grid[row][col]
-            #drawing cell
+            
             pygame.draw.rect(screen, cellColor, ((cell.x * cellSize) + ((row + 1) * wallWidth), (cell.y * cellSize) + ((col + 1) * wallWidth), cellSize, cellSize))
+
+            #drawing head and updatedHead for debugging
+            '''
             if head.x == cell.x and head.y == cell.y:
                 pygame.draw.rect(screen, (255, 0, 0), ((cell.x * cellSize) + ((row + 1) * wallWidth), (cell.y * cellSize) + ((col + 1) * wallWidth), cellSize, cellSize))
+            if updatedHead.x == cell.x and updatedHead.y == cell.y:
+                pygame.draw.rect(screen, (0, 255, 0), ((cell.x * cellSize) + ((row + 1) * wallWidth), (cell.y * cellSize) + ((col + 1) * wallWidth), cellSize, cellSize))
             '''
-            #drawing open segments
-            #left wall
-            if cell.visited == True:
-                pygame.draw.rect(screen, cellColor, ((cell.x * cellSize) + ((row + 1) * wallWidth) - wallWidth, (cell.y * cellSize) + ((col + 1) * wallWidth), wallWidth, cellSize))
-            #right wall
-            if cell.visited == True:
-                pygame.draw.rect(screen, cellColor, ((cell.x * cellSize) + ((row + 1) * wallWidth) + cellSize, (cell.y * cellSize) + ((col + 1) * wallWidth), wallWidth, cellSize))
-            #top wall
-            if cell.visited == True:
-                pygame.draw.rect(screen, cellColor, ((cell.x * cellSize) + ((row + 1) * wallWidth), (cell.y * cellSize) + ((col + 1) * wallWidth) - wallWidth, cellSize, wallWidth))
-            #bottom wall
-            if cell.visited == True:
-                pygame.draw.rect(screen, cellColor, ((cell.x * cellSize) + ((row + 1) * wallWidth), (cell.y * cellSize) + ((col + 1) * wallWidth) + cellSize, cellSize, wallWidth))
-            '''
+
+    start = grid[0][0]
+    finish = grid[-1][-1]
+
+    pygame.draw.rect(screen, (0, 255, 0), ((start.x * cellSize) + ((start.x + 1) * wallWidth), (start.y * cellSize) + ((start.y + 1) * wallWidth), cellSize, cellSize))
+    pygame.draw.rect(screen, (255, 0, 0), ((finish.x * cellSize) + ((finish.x + 1) * wallWidth), (finish.y * cellSize) + ((finish.y + 1) * wallWidth), cellSize, cellSize))
+    
     pygame.display.update()
-    clock.tick(5)
+    clock.tick(0)
