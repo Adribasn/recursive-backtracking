@@ -1,7 +1,7 @@
 # Recursive Backtracking
 My implementation of the recursive backtracking algorithm for maze generation.
 
-Made in Python using PyGame for the graphical elements.
+Made in Python using PyGame
 
 ## 10x10 Maze 
 Performance : 3.3s
